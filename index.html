@@ -1,21 +1,95 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
-<head>
-  <meta charset="UTF-8" />
-  <title>Kitap Dünyası</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kitap Dükkanı</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg">
+      <div class="blob blob1"></div>
+      <div class="blob blob2"></div>
+      <div class="grid"></div>
+    </div>
 
-  <div class="container glass">
-    <h1>📚 Kitap Dünyası</h1>
+    <header class="topbar glass">
+      <div class="brand">
+        <div class="logo">📚</div>
+        <div>
+          <div class="title">Kitap Dükkanı</div>
+          <div class="subtitle">Google Books ile arama • Favoriler localStorage</div>
+        </div>
+      </div>
 
-    <div id="book-list" class="grid"></div>
+      <div class="search">
+        <input id="q" type="text" placeholder="Kitap ara (örn: Dune, Orhan Pamuk, Clean Code)" />
+        <button id="btnSearch" class="btn primary">Ara</button>
+      </div>
 
-    <h2>⭐ Favoriler</h2>
-    <div id="favorites" class="grid small"></div>
-  </div>
+      <div class="actions">
+        <button id="btnCart" class="btn">🧺 Sepet <span id="cartCount" class="pill">0</span></button>
+        <button id="btnFav" class="btn">❤️ Favoriler <span id="favCount" class="pill">0</span></button>
+      </div>
+    </header>
 
-  <script src="app.js"></script>
-</body>
+    <main class="layout">
+      <section class="panel glass">
+        <div class="panelHead">
+          <div>
+            <h2>Kitaplar</h2>
+            <p id="resultInfo" class="muted">Arama yaparak kitapları listele.</p>
+          </div>
+          <div class="smallRow">
+            <select id="sort" class="select">
+              <option value="relevance">Sıralama: Alaka</option>
+              <option value="title">Sıralama: Başlık (A→Z)</option>
+              <option value="price">Sıralama: Fiyat (ucuz→pahalı)</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="bookList" class="cards"></div>
+      </section>
+
+      <aside class="side">
+        <section class="panel glass">
+          <div class="panelHead">
+            <div>
+              <h2>Favoriler</h2>
+              <p class="muted">Favoriye eklediklerin burada.</p>
+            </div>
+            <button id="btnClearFav" class="btn danger">Temizle</button>
+          </div>
+          <div id="favList" class="miniList"></div>
+        </section>
+
+        <section class="panel glass">
+          <div class="panelHead">
+            <div>
+              <h2>Sepet</h2>
+              <p class="muted">Satın alma simülasyonu.</p>
+            </div>
+            <button id="btnClearCart" class="btn danger">Temizle</button>
+          </div>
+          <div id="cartList" class="miniList"></div>
+
+          <div class="totals">
+            <div class="row"><span>Ara Toplam</span><strong id="subTotal">₺0</strong></div>
+            <div class="row"><span>Kargo</span><strong id="shipping">₺0</strong></div>
+            <div class="row total"><span>Toplam</span><strong id="total">₺0</strong></div>
+            <button id="btnCheckout" class="btn primary wide">Ödemeyi Tamamla</button>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="footer muted">
+      Not: Veri tabanı yok. Favoriler ve sepet tarayıcıda <code>localStorage</code> ile saklanır.
+    </footer>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="./app.js"></script>
+  </body>
 </html>
